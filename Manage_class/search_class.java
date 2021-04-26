@@ -1,4 +1,5 @@
 import javax.swing.table.DefaultTableModel;
+import javax.swing.DefaultRowSorter;
 import javax.swing.table.TableRowSorter;
 import javax.swing.*;
 import java.awt.Color;
@@ -9,12 +10,13 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 public class search_class {
-	private static JTextField fname_field;
-	private static JTextField lname_field;
 	private static JTextField subject_field;
 	private static JTextField professor_field;
 	private static JTextField units_field;
 	private static JTextField schedule_field;
+	private static JTextField lname_field;
+	private static JTextField fname_field;
+	private static JTextField search_subject_field;
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -44,31 +46,10 @@ public class search_class {
 		JScrollPane pane = new JScrollPane(search_class_table);
 		pane.setForeground(Color.RED);
 		pane.setBackground(Color.WHITE);
-		pane.setBounds(202, 28, 553, 298);
+		pane.setBounds(197, 28, 558, 298);
 		search_class_frame.getContentPane().add(pane);
 		
-		fname_field = new JTextField();
-		fname_field.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyPressed(KeyEvent e) {
-				
-				DefaultTableModel model =(DefaultTableModel)search_class_table.getModel();
-				TableRowSorter<DefaultTableModel> table_row = new TableRowSorter<DefaultTableModel>(model);
-				search_class_table.setRowSorter(table_row);
-				table_row.setRowFilter(RowFilter.regexFilter(fname_field.getText().trim()));
-				table_row.setRowFilter(RowFilter.regexFilter(lname_field.getText().trim()));
-			}
-		});
-		fname_field.setBounds(708, 362, 131, 20);
-		search_class_frame.getContentPane().add(fname_field);
-		fname_field.setColumns(10);
-		
-		lname_field = new JTextField();
-		lname_field.setBounds(708, 406, 131, 20);
-		search_class_frame.getContentPane().add(lname_field);
-		lname_field.setColumns(10);
-		
-		JLabel add_class_label = new JLabel("Add a class");
+		JLabel add_class_label = new JLabel("ADD CLASS");
 		add_class_label.setBounds(212, 336, 169, 14);
 		search_class_frame.getContentPane().add(add_class_label);
 		
@@ -85,19 +66,19 @@ public class search_class {
 		*/
 		comboBox.setBackground(Color.WHITE);
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"MATH", "CSC", "CHEM", "PHYS"}));
-		comboBox.setBounds(248, 361, 150, 22);
+		comboBox.setBounds(257, 459, 150, 22);
 		search_class_frame.getContentPane().add(comboBox);
 		
 		JLabel search_prof_label = new JLabel("Search by Professor");
-		search_prof_label.setBounds(586, 337, 169, 14);
+		search_prof_label.setBounds(574, 516, 169, 14);
 		search_class_frame.getContentPane().add(search_prof_label);
 		
 		JLabel first_name_label = new JLabel("Professor's first name");
-		first_name_label.setBounds(467, 365, 168, 14);
+		first_name_label.setBounds(467, 547, 168, 14);
 		search_class_frame.getContentPane().add(first_name_label);
 		
 		JLabel last_name_label = new JLabel("Professor's last name");
-		last_name_label.setBounds(467, 409, 168, 14);
+		last_name_label.setBounds(467, 575, 168, 14);
 		search_class_frame.getContentPane().add(last_name_label);
 		
 		Object[] row = new Object[4];
@@ -129,6 +110,7 @@ public class search_class {
 				
 				if (i >= 0) {
 					model.removeRow(i);	
+					
 				}
 				
 				else JOptionPane.showMessageDialog(search_class_frame, "Delete error");
@@ -172,6 +154,68 @@ public class search_class {
 		JLabel schedule_label = new JLabel("Enter schedule");
 		schedule_label.setBounds(80, 435, 115, 14);
 		search_class_frame.getContentPane().add(schedule_label);
+		
+		lname_field = new JTextField();
+		lname_field.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				
+				DefaultTableModel modelTwo = (DefaultTableModel)search_class_table.getModel();
+				TableRowSorter<DefaultTableModel> table_row_two = new TableRowSorter<DefaultTableModel>(modelTwo);
+				search_class_table.setRowSorter(table_row_two);
+				table_row_two.setRowFilter(RowFilter.regexFilter(lname_field.getText().trim()));
+			}
+		});
+		lname_field.setText("");
+		lname_field.setBounds(613, 572, 169, 20);
+		search_class_frame.getContentPane().add(lname_field);
+		lname_field.setColumns(10);
+		
+		fname_field = new JTextField();
+		fname_field.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(java.awt.event.KeyEvent e) {
+				
+				DefaultTableModel modelTwo = (DefaultTableModel)search_class_table.getModel();
+				TableRowSorter<DefaultTableModel> table_row = new TableRowSorter<DefaultTableModel>(modelTwo);
+				search_class_table.setRowSorter(table_row);
+				table_row.setRowFilter(RowFilter.regexFilter(fname_field.getText().trim()));
+			}
+		});
+		fname_field.setBounds(613, 544, 169, 20);
+		search_class_frame.getContentPane().add(fname_field);
+		fname_field.setColumns(10);
+		
+		JLabel class_label = new JLabel("SEARCH CLASS");
+		class_label.setBounds(574, 336, 154, 14);
+		search_class_frame.getContentPane().add(class_label);
+		
+		search_subject_field = new JTextField();
+		search_subject_field.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				DefaultTableModel modelThree = (DefaultTableModel)search_class_table.getModel();
+				TableRowSorter<DefaultTableModel> table_row_three = new TableRowSorter<DefaultTableModel>(modelThree);
+				search_class_table.setRowSorter(table_row_three);
+				table_row_three.setRowFilter(RowFilter.regexFilter(search_subject_field.getText().trim()));
+				
+			}
+		});
+		search_subject_field.setBounds(613, 406, 169, 20);
+		search_class_frame.getContentPane().add(search_subject_field);
+		search_subject_field.setColumns(10);
+		
+		JLabel search_subject_enter_field = new JLabel("Enter subject");
+		search_subject_enter_field.setBounds(467, 409, 103, 14);
+		search_class_frame.getContentPane().add(search_subject_enter_field);
+		
+		JLabel search_subject_label = new JLabel("Search class by subject");
+		search_subject_label.setBounds(574, 378, 154, 14);
+		search_class_frame.getContentPane().add(search_subject_label);
+		
+		JLabel or_label = new JLabel("OR");
+		or_label.setBounds(589, 463, 46, 14);
+		search_class_frame.getContentPane().add(or_label);
 		
 		//Object[] row = new Object[4];
 	
