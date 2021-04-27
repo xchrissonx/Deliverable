@@ -56,6 +56,8 @@ public class scheduleSearch extends classInfo {
 			System.out.println(result.get(i).getPrerequisite());
 			System.out.println(result.get(i).getProfassorName());
 		}
+		
+		
 	}
 	
 	
