@@ -22,6 +22,7 @@ public class LoginScreen extends JFrame implements ActionListener {
 	      password_label.setText("Password :");
 	      password_text = new JPasswordField();
 	      panel = new JPanel(new GridLayout(6, 3));
+	      panel.setBackground(Color.LIGHT_GRAY);
 	      panel.add(user_label);
 	      panel.add(userName_text);
 	      panel.add(password_label);
@@ -43,13 +44,17 @@ public class LoginScreen extends JFrame implements ActionListener {
 	      btnNewButton.setForeground(UIManager.getColor("Button.light"));
 	      btnNewButton.addActionListener(new ActionListener() {
 	      	public void actionPerformed(ActionEvent e) {
+	  //  		LoginScreen.setVisiable(false);
 	      		
 	      		new ForgotPass();
+	      	
 	      	}
 	      });
 	      panel.add(btnNewButton);
 	      // Submit
 	      submit = new JButton("SUBMIT");
+	      
+	      
 	      submit.setForeground(Color.RED);
 	      submit.setBackground(Color.GREEN);
 	      panel.add(submit);
@@ -80,10 +85,21 @@ public class LoginScreen extends JFrame implements ActionListener {
 	   public void actionPerformed(ActionEvent ae) {
 	      String userName = userName_text.getText();
 	      String password = password_text.getText();
-	      if (userName.trim().equals("admin") && password.trim().equals("admin")) {
+	      String U = NewPass();
+	      String P = UserName();
+	      if (userName.trim().equals(U) && password.trim().equals(P)) {
 	         message.setText(" Hello " + userName + "");
 	      } else {
 	         message.setText(" Invalid user.. ");
 	      }
 	   }
+ 	   public String NewPass() {
+ 		  String pass = "admin"; 
+ 	   return pass;
+ 	   }
+ 	   public String UserName() {
+ 		  String pass = "admin"; 
+ 	   return pass;
+ 	   
+ 	   }
 	}
