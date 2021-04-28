@@ -1,5 +1,10 @@
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class Account {
+import javax.swing.JFrame;
+
+public class Account extends JFrame implements ActionListener {
 	public static void main(String [] args) {
 		Student user = new Student("Josiah", "Villarante", "Marh 12 1998", "123-23-1234", "CS", "Fall");
 		System.out.println(user.getFirstName() + " " + user.getLastName() + " " + user.getBirthday() + " " + user.getSsn());
@@ -24,6 +29,7 @@ public class Account {
 	
 	private String userName, password;
 	private Student student;
+	
 	public Account(Student student, String userName, String password) {
 		this.userName = userName;
 		this.password = password;
@@ -39,4 +45,10 @@ public class Account {
 	private void setUsername(String userName) {		this.userName = userName;	}
 	
 	private void setPassword(String password) {		this.password = password;	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
 }
