@@ -1,5 +1,8 @@
 import java.awt.*;
 import java.awt.event.*;
+import java.nio.charset.Charset;
+import java.util.Random;
+
 import javax.swing.*;
 import java.awt.event.*;
 public class ForgotPass extends JFrame implements ActionListener {
@@ -8,10 +11,7 @@ public class ForgotPass extends JFrame implements ActionListener {
 	   JTextField Email_text,phone_text;
 
 	   JButton sent, cancel,Forgot;
-	   private JLabel email_label_1;
-	   private JTextField Code_radom;
-	   private JButton submit_1;
-	   private JLabel message_1;
+	   private JLabel generatedString;
 	   ForgotPass() {
 	      // Gmail Label
 	      email_label = new JLabel();
@@ -24,6 +24,8 @@ public class ForgotPass extends JFrame implements ActionListener {
 	      Cell_label.setText("Phone#");
 	      phone_text = new JTextField();
 	      panel = new JPanel(new GridLayout(6, 3));
+	      panel.setBackground(Color.LIGHT_GRAY);
+	      panel.setForeground(Color.LIGHT_GRAY);
 	      panel.add(email_label);
 	      panel.add(Email_text);
 	      panel.add(Cell_label);
@@ -48,25 +50,8 @@ public class ForgotPass extends JFrame implements ActionListener {
 	      panel.add(sent);
 	      panel.add(sent);
 	      
-	      email_label_1 = new JLabel();
-	      email_label_1.setText("Enter Random Code");
-	      email_label_1.setHorizontalAlignment(SwingConstants.CENTER);
-	      panel.add(email_label_1);
-	      
-	      Code_radom = new JTextField();
-	      panel.add(Code_radom);
-	      
-	      submit_1 = new JButton("SUBMIT");
-	      submit_1.addActionListener(new ActionListener() {
-	      	public void actionPerformed(ActionEvent e) {
-	      	}
-	      });
-	      
-	      message_1 = new JLabel();
-	      panel.add(message_1);
-	      submit_1.setForeground(Color.RED);
-	      submit_1.setBackground(Color.GREEN);
-	      panel.add(submit_1);
+	      generatedString = new JLabel();
+	      panel.add(generatedString);
 	      // Adding the listeners to components..
 	      sent.addActionListener(this);
 	    //  getContentPane().add(panel2, BorderLayout.SOUTH);
@@ -83,11 +68,27 @@ public class ForgotPass extends JFrame implements ActionListener {
 	   public void actionPerformed(ActionEvent ae) {
 	      String Gmail = Email_text.getText();
 	      String password = phone_text.getText();
+	      //String getCode = Code_radom.getText();
+	      //String randcode = GeneratingRandomString();
 	      if (Gmail.trim().equals("thanhthuongvn655@gmail.com") || password.trim().equals("2096707159")) {
-	         message.setText(" valid ");
+	         message.setText(" valid" );
+	         new randomCode();
 	      } else {
-	         message.setText(" invalid ... ");
-	      }
+	         message.setText(" invalid ... " );
+	      } 
+	      
+	      
+	//      if (getCode.trim().equals(randcode)) {
+	 //   	  generatedString.setText(" valid");
+		         
+		//      } else {
+		//    generatedString.setText(" invalid ... ");
+		   //   }
+	      
+	    
 	      
 	   }
+
+	   
+	   
 	}
